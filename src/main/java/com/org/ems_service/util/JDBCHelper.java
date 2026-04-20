@@ -16,18 +16,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-
-import jakarta.annotation.PostConstruct;
 
 @Component
 public class JDBCHelper {
@@ -46,26 +40,16 @@ public class JDBCHelper {
 	private List<Parameter> parameterList = null;
 	private List<List<Parameter>> batchParameterList = null;
 
-	
-	private final Environment env;
-	
-//	  private final DataSource dataSource;
-//
-//	    public JDBCHelper(DataSource dataSource) {
-//	        this.dataSource = dataSource;
-//	    }
-
-
-//	@Autowired
-//	private DataSource dataSource;
+	private Environment env;
 
 	public JDBCHelper(Environment env) {
 		this.env = env;
-		String[] profiles = this.env.getActiveProfiles();
-		System.out.println("==================p==" + profiles);
 		init();
 	}
-	
+
+	public JDBCHelper() {
+	}
+
 	public void init() {
 
 		if (StringUtils.isEmpty(JDBCHelper.dbUrl)) {
@@ -113,13 +97,12 @@ public class JDBCHelper {
 		Integer connectAttemptCount = 0;
 		while (connectAttemptCount < 5 && (this.connection == null || this.connection.isClosed())) {
 			try {
-//				this.connection = dataSource.getConnection();
 				Class.forName(JDBCHelper.driverClassName);
 				this.connection = DriverManager.getConnection(JDBCHelper.dbUrl, JDBCHelper.dbUserName,
 						JDBCHelper.dbPassWord);
-				System.out.println("connection===============" + this.connection);
+//				System.out.println("connection===============" + this.connection);
 			} catch (Exception e) {
-				LOGGER.info(e);
+//				LOGGER.info(e);
 				Thread.sleep(2000);
 			}
 			connectAttemptCount++;

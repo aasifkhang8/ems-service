@@ -1,21 +1,25 @@
-//package com.org.ems_service.config;
-//
-//import javax.sql.DataSource;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.context.annotation.PropertySource;
-//import org.springframework.core.env.Environment;
+package com.org.ems_service.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 //import org.springframework.jdbc.datasource.DriverManagerDataSource;
-//
-//@Configuration
-////@ComponentScan("com.org.ems_service")
+
+import com.org.ems_service.util.JDBCHelper;
+
+@Configuration
+//@ComponentScan("com.org.ems_service")
 //@PropertySource("classpath:application.properties")
-//public class AppConfig {
-//	@Autowired
-//	private Environment env;
-//
+public class AppConfig {
+	@Autowired
+	private Environment env;
+
+	@Bean
+	JDBCHelper getJDBCHelper() {
+		return new JDBCHelper(env);
+	}
+
 //	private static final String URL = "dbUrl";
 //	private static final String USER = "dbUserName";
 //	private static final String PASSWORD = "dbPassWord";
@@ -30,5 +34,5 @@
 //		dmds.setDriverClassName(env.getProperty(DRIVER));
 //		return dmds;
 //	}
-//
-//}
+
+}
