@@ -1,5 +1,8 @@
 package com.org.ems_service.serviceImpl;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.org.ems_service.dto.TempQuestionsDto;
@@ -29,15 +32,30 @@ public class TempQuestionsServiceImpl implements TempQuestionsService {
 			jdbchelper.addStringParameter(":IS_ACTIVE", dto.getIsActive());
 			jdbchelper.addStringParameter(":INSERTED_BY", dto.getInsertedBy());
 			jdbchelper.addStringParameter(":UPDATED_BY", dto.getUpdatedBy());
-			
+
 			jdbchelper.executeNonQueryWithParameters(QueryConstant.INSERT_TEMP_QUESTION);
-			
 
 		} catch (Exception e) {
 			throw new Exception();
+		} finally {
+			jdbchelper.dispose();
 		}
 
 		return Constants.SAVE;
+	}
+
+	@Override
+	public List<LinkedHashMap<String, Object>> findByTempQuestionsId(TempQuestionsDto dto) throws Exception {
+		JDBCHelper jdbchelper = null;
+		try {
+			jdbchelper = new JDBCHelper();
+			jdbchelper.addIntegerParameter(":ID", dto.getId());
+			return jdbchelper.getStringResultSetHashMapWithParams(QueryConstant.FIND_QUESTION_BY_ID);
+		} catch (Exception e) {
+			throw new Exception();
+		} finally {
+			jdbchelper.dispose();
+		}
 	}
 
 }

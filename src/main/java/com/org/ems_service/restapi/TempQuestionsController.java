@@ -1,10 +1,12 @@
 package com.org.ems_service.restapi;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +17,8 @@ import com.org.ems_service.dto.TempQuestionsDto;
 import com.org.ems_service.service.TempQuestionsService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/tempQuestions")
+@CrossOrigin
 public class TempQuestionsController {
 	
 	@Autowired
@@ -36,6 +39,14 @@ public class TempQuestionsController {
 //		response.setData(EmployeeList);
 //		return ResponseEntity.ok(response);
 //	}
+	
+	@PostMapping(value = "/findByTempQuestionsId", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseDto<LinkedHashMap<String, Object>>> findAllEmployee(@RequestBody TempQuestionsDto tempQuestions) throws Exception {
+		ResponseDto<LinkedHashMap<String, Object>> response = new ResponseDto<LinkedHashMap<String, Object>>();
+		List<LinkedHashMap<String, Object>> questionList = this.tempQuestionsService.findByTempQuestionsId(tempQuestions);
+		response.setData(questionList);
+		return ResponseEntity.ok(response);
+	}
 
 
 }

@@ -1,5 +1,8 @@
 package com.org.ems_service.service;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.org.ems_service.dto.TempQuestionsDto;
@@ -13,4 +16,6 @@ public interface TempQuestionsService {
 //	TempQuestions findTempQuestionsById(Integer id);
 //
 //	List<TempQuestions> findAllTempQuestions(TempQuestions employee) throws Exception;
+
+	List<LinkedHashMap<String, Object>> findByTempQuestionsId(TempQuestionsDto tempQuestions) throws Exception;
 }
