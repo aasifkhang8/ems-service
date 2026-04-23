@@ -112,7 +112,7 @@ public class TempQuestionsDto {
 		return questionLevelId;
 	}
 
-	public void setQuestionLevelId(byte questionLevelId) {
+	public void setQuestionLevelId(int questionLevelId) {
 		this.questionLevelId = questionLevelId;
 	}
 
@@ -122,10 +122,6 @@ public class TempQuestionsDto {
 
 	public void setChapterId(int chapterId) {
 		this.chapterId = chapterId;
-	}
-
-	public void setQuestionLevelId(int questionLevelId) {
-		this.questionLevelId = questionLevelId;
 	}
 
 	public String getIsActive() {
