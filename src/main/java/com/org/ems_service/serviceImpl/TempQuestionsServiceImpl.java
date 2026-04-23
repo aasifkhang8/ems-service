@@ -29,6 +29,7 @@ public class TempQuestionsServiceImpl implements TempQuestionsService {
 			jdbchelper.addStringParameter(":CORRECT_OPTION", dto.getCorrectOption());
 			jdbchelper.addIntegerParameter(":OPTION_TYPE_ID", dto.getOptionTypeId());
 			jdbchelper.addIntegerParameter(":QUESTION_LEVEL_ID", dto.getQuestionLevelId());
+			jdbchelper.addIntegerParameter(":CHAPTER_ID", dto.getChapterId());
 			jdbchelper.addStringParameter(":IS_ACTIVE", dto.getIsActive());
 			jdbchelper.addStringParameter(":INSERTED_BY", dto.getInsertedBy());
 			jdbchelper.addStringParameter(":UPDATED_BY", dto.getUpdatedBy());

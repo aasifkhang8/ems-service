@@ -17,6 +17,7 @@ public class TempQuestionsDto {
 	private String correctOption;
 	private int optionTypeId;
 	private int questionLevelId;
+	private int chapterId;
 	private String isActive;
 	private String insertedBy;
 	private String updatedBy;
@@ -112,6 +113,18 @@ public class TempQuestionsDto {
 	}
 
 	public void setQuestionLevelId(byte questionLevelId) {
+		this.questionLevelId = questionLevelId;
+	}
+
+	public int getChapterId() {
+		return chapterId;
+	}
+
+	public void setChapterId(int chapterId) {
+		this.chapterId = chapterId;
+	}
+
+	public void setQuestionLevelId(int questionLevelId) {
 		this.questionLevelId = questionLevelId;
 	}
 
