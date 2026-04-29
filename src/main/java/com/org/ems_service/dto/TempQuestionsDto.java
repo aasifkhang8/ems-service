@@ -7,6 +7,7 @@ import com.org.ems_service.util.Constants;
 
 public class TempQuestionsDto {
 	private int id;
+	private int uiIdCounter;
 	private String question;
 	private String optionA;
 	private String optionB;
@@ -162,6 +163,14 @@ public class TempQuestionsDto {
 
 	public void setUpdatedDttm(LocalDateTime updatedDttm) {
 		this.updatedDttm = updatedDttm;
+	}
+
+	public int getUiIdCounter() {
+		return uiIdCounter;
+	}
+
+	public void setUiIdCounter(int uiIdCounter) {
+		this.uiIdCounter = uiIdCounter;
 	}
 
 }
